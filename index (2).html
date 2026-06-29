@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mayank Tomar — Data Analytics Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy:   #0D1B2A;
+    --blue:   #1B4FE4;
+    --cyan:   #00D4FF;
+    --white:  #F0F4FF;
+    --grey:   #8A99B3;
+    --card:   #111D2E;
+    --border: #1E3050;
+    --green:  #00E676;
+    --orange: #FF6B35;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Space Grotesk', sans-serif;
+    background: var(--navy);
+    color: var(--white);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    padding: 16px 40px;
+    display: flex; justify-content: space-between; align-items: center;
+    background: rgba(13,27,42,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1rem; color: var(--cyan); letter-spacing: 0.05em;
+  }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a {
+    color: var(--grey); text-decoration: none; font-size: 0.9rem;
+    font-weight: 500; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--cyan); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 120px 40px 80px;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; top: -200px; right: -200px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(27,79,228,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero::after {
+    content: '';
+    position: absolute; bottom: -100px; left: -100px;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(0,212,255,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem; color: var(--cyan);
+    letter-spacing: 0.15em; text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .hero-name {
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    font-weight: 700; line-height: 1.05;
+    letter-spacing: -0.02em;
+  }
+  .hero-name span { color: var(--cyan); }
+  .hero-role {
+    font-size: clamp(1rem, 2vw, 1.3rem);
+    color: var(--grey); font-weight: 400;
+    margin-top: 16px; max-width: 600px;
+  }
+
+  .hero-stats {
+    display: flex; gap: 48px; margin-top: 48px; flex-wrap: wrap;
+  }
+  .stat { border-left: 2px solid var(--blue); padding-left: 16px; }
+  .stat-num {
+    font-size: 1.8rem; font-weight: 700; color: var(--white);
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .stat-label { font-size: 0.8rem; color: var(--grey); margin-top: 2px; }
+
+  .hero-cta {
+    display: flex; gap: 16px; margin-top: 48px; flex-wrap: wrap;
+  }
+  .btn {
+    padding: 12px 28px; border-radius: 6px; font-weight: 600;
+    font-size: 0.9rem; text-decoration: none; transition: all 0.2s;
+    font-family: 'Space Grotesk', sans-serif; cursor: pointer; border: none;
+  }
+  .btn-primary {
+    background: var(--blue); color: white;
+  }
+  .btn-primary:hover { background: #2560f5; transform: translateY(-2px); }
+  .btn-outline {
+    background: transparent; color: var(--cyan);
+    border: 1px solid var(--cyan);
+  }
+  .btn-outline:hover { background: rgba(0,212,255,0.08); transform: translateY(-2px); }
+
+  /* ── SECTIONS ── */
+  section { padding: 100px 40px; max-width: 1100px; margin: 0 auto; }
+
+  .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem; color: var(--cyan);
+    letter-spacing: 0.2em; text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .section-title {
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    font-weight: 700; letter-spacing: -0.01em;
+    margin-bottom: 48px;
+  }
+
+  /* ── SKILLS ── */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+  }
+  .skill-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px; padding: 24px;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .skill-card:hover { border-color: var(--blue); transform: translateY(-3px); }
+  .skill-icon { font-size: 1.8rem; margin-bottom: 12px; }
+  .skill-name { font-weight: 600; font-size: 1rem; margin-bottom: 8px; }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+  .tag {
+    font-size: 0.72rem; padding: 3px 10px; border-radius: 20px;
+    font-family: 'JetBrains Mono', monospace;
+    background: rgba(27,79,228,0.15); color: var(--cyan);
+    border: 1px solid rgba(27,79,228,0.3);
+  }
+
+  /* ── PROJECTS ── */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 24px;
+  }
+  .project-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px; padding: 28px;
+    transition: border-color 0.25s, transform 0.25s;
+    position: relative; overflow: hidden;
+  }
+  .project-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--blue), var(--cyan));
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.3s;
+  }
+  .project-card:hover { border-color: var(--blue); transform: translateY(-4px); }
+  .project-card:hover::before { transform: scaleX(1); }
+
+  .project-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem; color: var(--cyan);
+    letter-spacing: 0.1em; margin-bottom: 12px;
+  }
+  .project-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 10px; }
+  .project-desc { font-size: 0.88rem; color: var(--grey); line-height: 1.65; margin-bottom: 18px; }
+  .project-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 20px; }
+  .project-outcome {
+    font-size: 0.82rem; color: var(--green);
+    font-family: 'JetBrains Mono', monospace;
+    padding-top: 16px; border-top: 1px solid var(--border);
+  }
+
+  /* ── INTERNSHIP ── */
+  .internship-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px; padding: 36px;
+    display: grid; grid-template-columns: 1fr auto;
+    gap: 24px; align-items: start;
+  }
+  .intern-company { font-size: 1.3rem; font-weight: 700; margin-bottom: 6px; }
+  .intern-role { color: var(--cyan); font-size: 0.95rem; margin-bottom: 12px; }
+  .intern-date {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem; color: var(--grey);
+  }
+  .intern-desc { color: var(--grey); font-size: 0.88rem; margin-top: 16px; line-height: 1.7; }
+  .intern-badge {
+    background: rgba(0,230,118,0.1);
+    border: 1px solid rgba(0,230,118,0.3);
+    color: var(--green); padding: 6px 14px; border-radius: 20px;
+    font-size: 0.78rem; font-weight: 600; white-space: nowrap;
+  }
+
+  /* ── CONTACT ── */
+  .contact-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+  }
+  .contact-link {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 10px; padding: 24px;
+    text-decoration: none; color: var(--white);
+    display: flex; align-items: center; gap: 16px;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .contact-link:hover { border-color: var(--blue); transform: translateY(-2px); }
+  .contact-icon { font-size: 1.5rem; }
+  .contact-label { font-size: 0.78rem; color: var(--grey); }
+  .contact-value { font-weight: 600; font-size: 0.95rem; }
+
+  /* ── FOOTER ── */
+  footer {
+    text-align: center; padding: 40px;
+    border-top: 1px solid var(--border);
+    color: var(--grey); font-size: 0.82rem;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  /* ── DIVIDER ── */
+  .divider {
+    width: 100%; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border), transparent);
+    margin: 0 auto;
+  }
+
+  @media (max-width: 600px) {
+    nav { padding: 14px 20px; }
+    .nav-links { gap: 20px; }
+    .hero { padding: 100px 20px 60px; }
+    section { padding: 70px 20px; }
+    .hero-stats { gap: 28px; }
+    .internship-card { grid-template-columns: 1fr; }
+    .contact-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">&lt;mayank.tomar /&gt;</div>
+  <ul class="nav-links">
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#internship">Internship</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <p class="hero-eyebrow">// B.Tech AI & ML — SRMS CET Bareilly</p>
+  <h1 class="hero-name">Mayank<br><span>Tomar</span></h1>
+  <p class="hero-role">Data Analytics Intern · Java & DSA Learner · AI/ML Enthusiast<br>
+  Building real-world projects from 2nd year itself.</p>
+
+  <div class="hero-stats">
+    <div class="stat">
+      <div class="stat-num">5</div>
+      <div class="stat-label">Projects Completed</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">300+</div>
+      <div class="stat-label">Rows of Data Cleaned</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">30</div>
+      <div class="stat-label">Cities Analyzed</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">2026</div>
+      <div class="stat-label">Currently Active</div>
+    </div>
+  </div>
+
+  <div class="hero-cta">
+    <a href="#projects" class="btn btn-primary">View Projects</a>
+    <a href="https://www.linkedin.com/in/mayank-tomar-18036732a" target="_blank" class="btn btn-outline">LinkedIn ↗</a>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- SKILLS -->
+<section id="skills">
+  <p class="section-label">// what I work with</p>
+  <h2 class="section-title">Skills & Tools</h2>
+  <div class="skills-grid">
+    <div class="skill-card">
+      <div class="skill-icon">📊</div>
+      <div class="skill-name">Data Analytics</div>
+      <div class="skill-tags">
+        <span class="tag">Excel</span>
+        <span class="tag">Data Cleaning</span>
+        <span class="tag">Pivot Tables</span>
+        <span class="tag">Charts</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🐍</div>
+      <div class="skill-name">Python</div>
+      <div class="skill-tags">
+        <span class="tag">Pandas</span>
+        <span class="tag">NumPy</span>
+        <span class="tag">Matplotlib</span>
+        <span class="tag">OpenPyXL</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">☕</div>
+      <div class="skill-name">Java</div>
+      <div class="skill-tags">
+        <span class="tag">OOP</span>
+        <span class="tag">DSA</span>
+        <span class="tag">Kunal Kushwaha</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🗺</div>
+      <div class="skill-name">Geospatial Analysis</div>
+      <div class="skill-tags">
+        <span class="tag">Location Data</span>
+        <span class="tag">Mapping</span>
+        <span class="tag">Expansion Analysis</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🤖</div>
+      <div class="skill-name">AI & ML</div>
+      <div class="skill-tags">
+        <span class="tag">B.Tech Specialization</span>
+        <span class="tag">Learning</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">💼</div>
+      <div class="skill-name">Soft Skills</div>
+      <div class="skill-tags">
+        <span class="tag">Problem Solving</span>
+        <span class="tag">Self-Learning</span>
+        <span class="tag">Consistent</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <p class="section-label">// what I've built</p>
+  <h2 class="section-title">Projects</h2>
+  <div class="projects-grid">
+
+    <div class="project-card">
+      <div class="project-num">TASK 01 — DATA CLEANING</div>
+      <div class="project-title">Data Cleaning & Structural Validation</div>
+      <div class="project-desc">Cleaned a raw business dataset — removed duplicates, handled missing values, standardized date formats, and fixed inconsistent entries to prepare it for analysis.</div>
+      <div class="project-tags">
+        <span class="tag">Excel</span><span class="tag">Python</span><span class="tag">Pandas</span><span class="tag">OpenPyXL</span>
+      </div>
+      <div class="project-outcome">✓ 3 duplicates removed · 6 missing values fixed · YYYY-MM-DD standardized</div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-num">TASK 02 — CHURN ANALYSIS</div>
+      <div class="project-title">Customer Churn Analysis</div>
+      <div class="project-desc">Analyzed customer order data to identify patterns in subscription cancellations. Cleaned raw CSV with 9 issues and prepared structured dataset for behavioral analysis.</div>
+      <div class="project-tags">
+        <span class="tag">Excel</span><span class="tag">Python</span><span class="tag">CSV</span><span class="tag">Data Cleaning</span>
+      </div>
+      <div class="project-outcome">✓ 9 data issues fixed · Mixed date formats resolved · Status normalized</div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-num">TASK 03 — WEB ANALYTICS</div>
+      <div class="project-title">Web Traffic Analytics</div>
+      <div class="project-desc">Examined 300 records of website traffic data across 6 months. Identified key metrics — page views, session duration, exit rates — and mapped user journeys to improve engagement.</div>
+      <div class="project-tags">
+        <span class="tag">Excel</span><span class="tag">Traffic Analysis</span><span class="tag">KPIs</span><span class="tag">Insights</span>
+      </div>
+      <div class="project-outcome">✓ 79,720 page views analyzed · 4.2% avg conversion rate · 7 insights generated</div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-num">TASK 04 — GEOSPATIAL</div>
+      <div class="project-title">Geospatial Data Analysis</div>
+      <div class="project-desc">Analyzed location-based sales data across 30 Indian cities and 174 stores. Identified regions with high demand but low store presence using expansion scoring methodology.</div>
+      <div class="project-tags">
+        <span class="tag">Geospatial</span><span class="tag">Python</span><span class="tag">Lat/Long</span><span class="tag">Excel</span>
+      </div>
+      <div class="project-outcome">✓ 30 cities mapped · 3 expansion targets found · Surat scored 4.53/5</div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-num">TASK 05 — DASHBOARD</div>
+      <div class="project-title">Interactive Dashboard Development</div>
+      <div class="project-desc">Built a multi-sheet Excel dashboard combining all project data — sales trends, web traffic, order status, regional analysis and key insights with 6 interactive charts.</div>
+      <div class="project-tags">
+        <span class="tag">Excel Dashboard</span><span class="tag">Charts</span><span class="tag">KPI Cards</span><span class="tag">Insights</span>
+      </div>
+      <div class="project-outcome">✓ 6 charts · 6 KPI cards · 3 analysis sheets · ₹6.15 Cr sales visualized</div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-num">PRACTICE — 300 ROWS</div>
+      <div class="project-title">Large Dataset Cleaning (300 Rows)</div>
+      <div class="project-desc">Cleaned a 300-row Indian e-commerce dataset with multiple issues — 3 duplicates, 5 missing emails, 2 missing quantities, mixed date formats, and wrong Status values.</div>
+      <div class="project-tags">
+        <span class="tag">Python</span><span class="tag">Pandas</span><span class="tag">Excel</span><span class="tag">Large Dataset</span>
+      </div>
+      <div class="project-outcome">✓ 7 cleaning steps · 0 missing values · Total_Amount column added</div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- INTERNSHIP -->
+<section id="internship">
+  <p class="section-label">// experience</p>
+  <h2 class="section-title">Internship</h2>
+  <div class="internship-card">
+    <div>
+      <div class="intern-company">VirtualWorks Lab</div>
+      <div class="intern-role">Data Analytics Intern</div>
+      <div class="intern-date">June 20, 2026 — July 20, 2026 · Remote</div>
+      <div class="intern-desc">
+        Completed 5 real-world data analytics tasks during a 1-month remote internship. 
+        Worked on data cleaning & validation, customer churn analysis, web traffic analytics, 
+        geospatial data analysis, and built an interactive multi-chart dashboard combining all 
+        project insights. All tasks completed using Python (Pandas, OpenPyXL) and Microsoft Excel.
+      </div>
+    </div>
+    <div>
+      <span class="intern-badge">✓ Active</span>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <p class="section-label">// get in touch</p>
+  <h2 class="section-title">Contact</h2>
+  <div class="contact-grid">
+    <a href="https://www.linkedin.com/in/mayank-tomar-18036732a" target="_blank" class="contact-link">
+      <div class="contact-icon">💼</div>
+      <div>
+        <div class="contact-label">LinkedIn</div>
+        <div class="contact-value">Mayank Tomar</div>
+      </div>
+    </a>
+    <a href="https://github.com/mayanktomar-17" target="_blank" class="contact-link">
+      <div class="contact-icon">🐙</div>
+      <div>
+        <div class="contact-label">GitHub</div>
+        <div class="contact-value">mayanktomar-17</div>
+      </div>
+    </a>
+    <a href="mailto:ramatomar548@gmail.com" class="contact-link">
+      <div class="contact-icon">📧</div>
+      <div>
+        <div class="contact-label">Email</div>
+        <div class="contact-value">ramatomar548@gmail.com</div>
+      </div>
+    </a>
+    <div class="contact-link" style="cursor:default;">
+      <div class="contact-icon">🎓</div>
+      <div>
+        <div class="contact-label">College</div>
+        <div class="contact-value">SRMS CET Bareilly · B.Tech AI & ML</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>mayanktomar-17.github.io &nbsp;·&nbsp; Built with HTML/CSS &nbsp;·&nbsp; 2026</p>
+</footer>
+
+</body>
+</html>
